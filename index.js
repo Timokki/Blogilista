@@ -1,7 +1,7 @@
-const http = require('http')
 const express = require('express')
 const app = express()
 const cors = require('cors')
+const procEnvs = require('dotenv').config()
 const mongoose = require('mongoose')
 
 const blogSchema = mongoose.Schema({
@@ -13,7 +13,7 @@ const blogSchema = mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-const mongoUrl = `mongodb+srv://fullstack:${password}@cluster0.6kjcn.mongodb.net/mybloglist?retryWrites=true`
+const mongoUrl = procEnvs.parsed.MONGODB_URI
 mongoose.connect(mongoUrl)
 
 app.use(cors())
@@ -37,7 +37,7 @@ app.post('/api/blogs', (request, response) => {
     })
 })
 
-const PORT = 3003
+const PORT = procEnvs.parsed.PORT
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`)
 })
