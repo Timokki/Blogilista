@@ -1,0 +1,9 @@
+POST http://localhost:3001/api/blogs HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Testiblogi",
+    "author": "Timppa Bloggaaja",
+    "url": "http://lumessakahlaajat.net",
+    "likes": "77"
+}
