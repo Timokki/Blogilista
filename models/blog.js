@@ -7,4 +7,14 @@ const blogSchema = new mongoose.Schema({
   likes: Number
 })
 
+// Muutetaan toJSON-metodin palauttamaa muotoa siten,
+// että mongodb:n luomat _id ja __v kentät jätetään pois hakutuloksista.
+blogSchema.set('toJSON', {
+  transform: (document, returnedObject) => {
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
+  }
+})
+
 module.exports = mongoose.model('Blog', blogSchema)
