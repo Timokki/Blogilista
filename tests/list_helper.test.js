@@ -75,8 +75,13 @@ describe('total likes', () => {
     expect(result).toBe(5)
   })
 
-  test('when list hasmany blogs equals the likes of that', () => {
+  test('when list has many blogs equal the likes of all likes', () => {
     const resultMany = listHelper.totalLikes(blogs)
     expect(resultMany).toBe(36)
+  })
+
+  test('what is a favorite blog', () => {
+    const resultFavorite = listHelper.favoriteBlog(blogs)
+    expect(resultFavorite).toEqual(blogs[2])
   })
 })

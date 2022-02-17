@@ -11,7 +11,20 @@ const totalLikes = (blogs) => {
   return sumWithInitial
 }
 
+const favoriteBlog = (blogs) => {
+  let currentFavoriteBlog
+
+  blogs.forEach(element => {
+    if (currentFavoriteBlog == null || element.likes > currentFavoriteBlog.likes) {
+      currentFavoriteBlog = element;
+    }
+  })
+  console.log('Current Favorite blog is: ', currentFavoriteBlog)
+  return currentFavoriteBlog
+}
+
 module.exports = {
   dummy,
-  totalLikes
+  totalLikes,
+  favoriteBlog
 }
