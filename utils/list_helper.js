@@ -23,8 +23,58 @@ const favoriteBlog = (blogs) => {
   return currentFavoriteBlog
 }
 
+const mostBlogs = (blogs) => {
+  const bloggers = []
+  let bloggersIndex = -1
+
+  blogs.forEach(element => {
+    bloggersIndex = bloggers.findIndex(item => item.author === element.author)
+    //console.log("forEach bloggersIndex: ", bloggersIndex)
+    if (bloggersIndex === -1)
+    {
+      console.log("bloggers.push: ", element.author)
+      const bloggaaja = {
+        author: element.author,
+        totalBlogs: 1 
+      }
+      bloggers.push(bloggaaja)
+    }
+    else bloggers[bloggersIndex].totalBlogs += 1
+  })
+
+  bloggers.sort((a, b) => b.totalBlogs - a.totalBlogs)
+  console.log("Sorted bloggers in mostBlogs: ", bloggers)
+  return bloggers[0]
+}
+
+const mostLikes = (blogs) => {
+  const bloggers = []
+  let bloggersIndex = -1
+
+  blogs.forEach(element => {
+    bloggersIndex = bloggers.findIndex(item => item.author === element.author)
+    console.log("forEach bloggersIndex: ", bloggersIndex)
+    if (bloggersIndex === -1)
+    {
+      console.log("bloggers.push: ", element.author)
+      const bloggaaja = {
+        author: element.author,
+        totalLikes: element.likes 
+      }
+      bloggers.push(bloggaaja)
+    }
+    else bloggers[bloggersIndex].totalLikes += element.likes
+  })
+
+  bloggers.sort((a, b) => b.totalLikes - a.totalLikes)
+  console.log("Sorted bloggers: ", bloggers)
+  return bloggers[0]
+}
+
 module.exports = {
   dummy,
   totalLikes,
-  favoriteBlog
+  favoriteBlog,
+  mostBlogs,
+  mostLikes
 }
